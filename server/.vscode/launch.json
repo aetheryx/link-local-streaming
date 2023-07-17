@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "vsdbg",
+            "type": "lldb",
+            "request": "launch",
+            "preLaunchTask": "vsbuild",
+            "program": "C:/Users/aetheryx/source/repos/Project1/x64/Debug/Project1.exe",
+            "args": [],
+            "cwd": "${workspaceRoot}"
+        }
+    ]
+}
