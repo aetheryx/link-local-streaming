@@ -15,30 +15,31 @@ void ticker(void *vargp) {
   struct sockaddr_in server_addr;
 
   socket_desc = socket(AF_INET, SOCK_STREAM, 0);
-    if(socket_desc < 0){
-        printf("Unable to create socket\n");
-        return;
-    }
-      printf("Socket created successfully\n");
-    
-    server_addr.sin_family = AF_INET;
-    server_addr.sin_port = htons(27015);
-    server_addr.sin_addr.s_addr = inet_addr("169.254.216.233");
-    
-    if(connect(socket_desc, (struct sockaddr*)&server_addr, sizeof(server_addr)) < 0){
-        printf("Unable to connect\n");
-        return;
-    }
-    printf("Connected with server successfully\n");
+  if (socket_desc < 0) {
+    printf("Unable to create socket\n");
+    return;
+  }
 
-    while (true) {
-      int count = recv(socket_desc, imageBuffer.data, 19906560, MSG_WAITALL);
-      if(count < 0){
-        printf("Error while receiving server's msg\n");
-        return;
-      }
-    }
+  printf("Socket created successfully\n");
+    
+  server_addr.sin_family = AF_INET;
+  server_addr.sin_port = htons(27015);
+  server_addr.sin_addr.s_addr = inet_addr("169.254.216.233");
+    
+  if(connect(socket_desc, (struct sockaddr*)&server_addr, sizeof(server_addr)) < 0) {
+    printf("Unable to connect\n");
+    return;
+  }
 
+  printf("Connected with server successfully\n");
+
+  while (true) {
+    int count = recv(socket_desc, imageBuffer.data, 19906560, MSG_WAITALL);
+    if (count < 0) {
+      printf("Error while receiving server's msg\n");
+      return;
+    }
+  }
 }
 
 int main() {
